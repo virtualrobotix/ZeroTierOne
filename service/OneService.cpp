@@ -615,21 +615,21 @@ public:
 
 				// Get any trusted paths in local.conf (we'll parse the rest of physical[] elsewhere)
 				json &physical = _localConfig["physical"];
-				if (physical.is_object()) {
-					for(json::iterator phy(physical.begin());phy!=physical.end();++phy) {
-						InetAddress net(OSUtils::jsonString(phy.key(),"").c_str());
-						if (net) {
-							if (phy.value().is_object()) {
-								uint64_t tpid;
-								if ((tpid = OSUtils::jsonInt(phy.value()["trustedPathId"],0ULL)) != 0ULL) {
-									if ((net.ss_family == AF_INET)||(net.ss_family == AF_INET6))
-										ppc[net].trustedPathId = tpid;
-								}
-								ppc[net].mtu = (int)OSUtils::jsonInt(phy.value()["mtu"],0ULL); // 0 means use default
-							}
-						}
-					}
-				}
+//				if (physical.is_object()) {
+//					for(json::iterator phy(physical.begin());phy!=physical.end();++phy) {
+//						InetAddress net(OSUtils::jsonString(phy.key(),"").c_str());
+//						if (net) {
+//							if (phy.value().is_object()) {
+//								uint64_t tpid;
+//								if ((tpid = OSUtils::jsonInt(phy.value()["trustedPathId"],0ULL)) != 0ULL) {
+//									if ((net.ss_family == AF_INET)||(net.ss_family == AF_INET6))
+//										ppc[net].trustedPathId = tpid;
+//								}
+//								ppc[net].mtu = (int)OSUtils::jsonInt(phy.value()["mtu"],0ULL); // 0 means use default
+//							}
+//						}
+//					}
+//				}
 
 				json &settings = _localConfig["settings"];
 				if (settings.is_object()) {
